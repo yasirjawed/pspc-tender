@@ -19,41 +19,39 @@
                                             @endforeach
                                         </div>
                                     @endif
-                                    <form action="{{ route('web.vendor.authentication.register') }}" method="POST">
+                                    <form action="{{ route('web.vendor.authentication.password-reset-submit') }}" method="POST">
                                         @csrf
-                                        <div class="input-container mb-2">
-                                            <input placeholder="Enter CNIC" class="input-field" type="text" name="cnic" required>
-                                            <span class="input-highlight"></span>
-                                        </div>
-                                        <div class="input-container mb-2">
+                                        <input type="hidden" name="token" value="{{ $token }}">
+                                        <div data-mdb-input-init class="input-container mb-2">
                                             <input placeholder="Enter Email" class="input-field" type="text" name="email" required>
                                             <span class="input-highlight"></span>
                                         </div>
-
-                                        <div class="input-container mb-2 position-relative">
+                                        <div data-mdb-input-init class="input-container mb-2">
                                             <input id="password" placeholder="Enter Password" class="input-field" type="password" name="password" required>
                                             <span class="input-highlight"></span>
                                             <button type="button" id="togglePassword" class="btn btn-sm btn-outline-secondary position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);">
                                                 <i id="eyeIcon" class="fa fa-eye"></i>
                                             </button>
                                         </div>
-                                        <div class="input-container mb-2 position-relative">
+                                        <div data-mdb-input-init class="input-container mb-2">
                                             <input id="password_confirmation" placeholder="Confirm Password" class="input-field" type="password" name="password_confirmation" required>
                                             <span class="input-highlight"></span>
                                             <button type="button" id="togglePassword2" class="btn btn-sm btn-outline-secondary position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);">
                                                 <i id="eyeIcon2" class="fa fa-eye"></i>
                                             </button>
                                         </div>
-
                                         <div class="text-center pt-1 mb-1 mt-1 pb-1">
-                                            <button type="submit" class="btn btn-dark btn-block w-100" type="button">Log in</button>
+                                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-block" type="submit">Change Password</button>
                                         </div>
-                                        <a href="{{ route('web.vendor.authentication.login') }}" class="text-center" style="color:#006400">
-                                            <p class="text-center">Already have an account?</p>
-                                        </a>
+                                        <hr>
                                     </form>
+                                    <div class="text-center mt-3">
+                                        <a href="{{ url('/') }}" class="btn btn-outline-dark btn-sm">Go Back to Main
+                                            Website</a>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- Hide this column on mobile devices using d-none d-lg-block classes -->
                             <div class="col-lg-6 d-none d-lg-flex align-items-center gradient-custom-2">
                                 <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                                     <h4 class="mb-4">Pakistan Security Printing Corporation</h4>

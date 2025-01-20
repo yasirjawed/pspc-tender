@@ -7,7 +7,6 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Center the navbar items -->
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,7 +27,13 @@
                     </ul>
                 </li>
             </ul>
-            <a href="{{ url('/authentication/login') }}"><button class="custom-btn m-2" role="button">ACCOUNT</button></a>
+            @auth('vendor')
+                <a href="#"><button class="custom-btn m-2" role="button">PROFILE</button></a>
+                <a href="{{ route('web.vendor.authentication.logout') }}"><button class="custom-btn m-2" role="button">LOGOUT</button></a>
+            @endauth
+            @guest('vendor')
+                <a href="{{ route('web.vendor.authentication.login') }}"><button class="custom-btn m-2" role="button">ACCOUNT</button></a>
+            @endguest
             <a href="{{ url('/') }}"><button class="custom-btn" role="button">MAIN WEBSITE</button></a>
         </div>
     </div>

@@ -19,32 +19,7 @@
                                             @endforeach
                                         </div>
                                     @endif
-                                    <form action="{{ route('web.vendor.authentication.login') }}" method="POST">
-                                        @csrf
-                                        <div class="input-container mb-2">
-                                            <input placeholder="Enter Email" class="input-field" type="text" name="email" required>
-                                            <span class="input-highlight"></span>
-                                        </div>
-
-                                        <div class="input-container mb-2 position-relative">
-                                            <input id="password" placeholder="Enter Password" class="input-field" type="password" name="password" required>
-                                            <span class="input-highlight"></span>
-                                            <button type="button" id="togglePassword" class="btn btn-sm btn-outline-secondary position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%);">
-                                                <i id="eyeIcon" class="fa fa-eye"></i>
-                                            </button>
-                                        </div>
-
-                                        <div class="text-center pt-1 mb-1 mt-1 pb-1">
-                                            <button type="submit" class="btn btn-dark btn-block w-100" type="button">Log in</button>
-                                        </div>
-                                        <a href="{{ route('web.vendor.authentication.register') }}" class="text-center" style="color:#006400">
-                                            <p class="text-center">Don't have an account?</p>
-                                        </a>
-                                        <hr>
-                                        <a href="{{ route('web.vendor.authentication.forget-password') }}" class="text-center" style="color:#006400">
-                                            <p class="text-center">Forgot password?</p>
-                                        </a>
-                                    </form>
+                                    <livewire:verification-page :user="$user" />
                                 </div>
                             </div>
                             <!-- Hide this column on mobile devices using d-none d-lg-block classes -->
@@ -113,20 +88,5 @@
         </style>
     @endpush
     @push('custom-js')
-        <script>
-            document.getElementById("togglePassword").addEventListener("click", function() {
-                const passwordField = document.getElementById("password");
-                const eyeIcon = document.getElementById("eyeIcon");
-                if (passwordField.type === "password") {
-                    passwordField.type = "text";
-                    eyeIcon.classList.remove("fa-eye");
-                    eyeIcon.classList.add("fa-eye-slash");
-                } else {
-                    passwordField.type = "password";
-                    eyeIcon.classList.remove("fa-eye-slash");
-                    eyeIcon.classList.add("fa-eye");
-                }
-            });
-        </script>
     @endpush
 @endsection

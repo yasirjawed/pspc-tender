@@ -29,7 +29,7 @@
                     </ul>
                 </li> --}}
                 <li class="nav-item">
-                    <a href="{{ route('web.vendor.profile.businessProfiling') }}" class="nav-link"> <i
+                    <a href="{{ route('web.vendor.business-profiling.index') }}" class="nav-link"> <i
                             class="nav-icon fa-solid fa-user"></i>
                         <p>Business Profile<i class="blinking-circle"></i>
                         </p>

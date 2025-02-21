@@ -13,7 +13,7 @@ class BusinessProfilingService
 
     public function getExistingData()
     {
-       return $this->businessProfilingRepository->getData();
+       return $this->businessProfilingRepository->getExistingData();
     }
 
     public function getDropdownData()

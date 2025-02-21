@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\frontend;
+namespace App\Http\Controllers\frontend\vendor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 use DB;
 use Illuminate\Support\Facades\Mail;
 use App\Services\BusinessProfilingService;
-class VendorProfilingController extends Controller
+class BusinessProfilingController extends Controller
 {
     protected BusinessProfilingService $businessProfilingService;
     public function __construct(BusinessProfilingService $businessProfilingService)
@@ -21,13 +21,13 @@ class VendorProfilingController extends Controller
         $this->businessProfilingService = $businessProfilingService;
     }
 
-    public function index(){
-        return view('frontend.vendor.pages.index');
-    }
-
     public function businessProfiling(){
         $ExistingData = $this->businessProfilingService->getExistingData();
         $DropDownData = $this->businessProfilingService->getDropdownData();
-        return view("frontend.vendor.business-profiling.index",compact("DropDownData"));
+        return view("frontend.vendor.business-profiling.index",compact("ExistingData","DropDownData"));
+    }
+
+    public function storeOrUpdateBusinessProfile(){
+        dd(1);
     }
 }

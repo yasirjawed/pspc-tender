@@ -6,9 +6,10 @@ use App\Http\Controllers\backend\{
     RoleController,
     DashboardController,
 };
-use App\Http\Controllers\frontend\{
+use App\Http\Controllers\frontend\vendor\{
     VendorAuthenticator,
-    VendorProfilingController,
+    BusinessProfilingController,
+    DashboardController as VDashboardController,
 };
 use App\Http\Middleware\IsVendorAuthenticated;
 
@@ -32,10 +33,13 @@ Route::prefix('vendor')->as('web.vendor.')->group(function () {
             Route::get('logout', 'logout')->name('logout');
         });
     });
-    Route::prefix('profile')->controller(VendorProfilingController::class)->as('profile.')->group(function () {
-        Route::group(['middleware' => ['IsVendorAuthenticated']], function() {
+    Route::group(['middleware' => ['IsVendorAuthenticated']], function() {
+        Route::prefix('profile')->controller(VDashboardController::class)->as('profile.')->group(function () {
             Route::get('/', 'index')->name('index');
-            Route::get('/business-profiling', 'businessProfiling')->name('businessProfiling');
+        });
+        Route::prefix('business-profiling')->controller(BusinessProfilingController::class)->as('business-profiling.')->group(function () {
+            Route::get('/', 'businessProfiling')->name('index');
+            Route::post('/', 'storeOrUpdateBusinessProfile')->name('storeOrUpdateBusinessProfile');
         });
     });
 });

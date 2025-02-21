@@ -18,7 +18,7 @@
     <div class="app-content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3 col-6">
+                {{-- <div class="col-lg-3 col-6">
                     <div class="small-box text-bg-primary">
                         <div class="inner">
                             <h3>{{ user_count_admin() }}</h3>
@@ -88,7 +88,7 @@
                             class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">More
                             info <i class="bi bi-link-45deg"></i></a>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

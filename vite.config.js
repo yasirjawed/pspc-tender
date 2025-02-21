@@ -4,17 +4,20 @@ import laravel from "laravel-vite-plugin";
 export default defineConfig({
     plugins: [
         laravel({
-            // Input files to bundle
             input: [
-                "resources/css/bootstrap.css",
-                "resources/css/custom-main.css",
-                "resources/js/bootstrap.js",
-                "resources/js/jquery.js",
-                "resources/js/custom.js",
+                "resources/css/app.css",
+                "resources/js/fileinput.min.css",
+                "resources/js/app.js",
+                "resources/js/fileinput.min.js",
+                "resources/js/profiling.js",
             ],
             refresh: true,
         }),
     ],
+    define: {
+        "window.$": "window.jQuery", // For global jQuery usage
+        "window.jQuery": "window.jQuery", // Ensure jQuery is available globally
+    },
     build: {
         rollupOptions: {
             output: {

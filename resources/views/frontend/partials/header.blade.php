@@ -28,7 +28,7 @@
                 </li>
             </ul>
             @auth('vendor')
-                <a href="#"><button class="custom-btn m-2" role="button">PROFILE</button></a>
+                <a href="{{ route('web.vendor.profile.index') }}"><button class="custom-btn m-2" role="button">PROFILE</button></a>
                 <a href="{{ route('web.vendor.authentication.logout') }}"><button class="custom-btn m-2" role="button">LOGOUT</button></a>
             @endauth
             @guest('vendor')

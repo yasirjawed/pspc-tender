@@ -17,13 +17,13 @@ use Illuminate\Support\Facades\Crypt;
 
 class RoleController extends Controller
 {
-    function __construct()
-    {
-         $this->middleware('permission:list-role|add-role|edit-role|delete-role', ['only' => ['index','store']]);
-         $this->middleware('permission:add-role', ['only' => ['create','store']]);
-         $this->middleware('permission:edit-role', ['only' => ['edit','update']]);
-         $this->middleware('permission:delete-role', ['only' => ['destroy']]);
-    }
+    // function __construct()
+    // {
+    //      $this->middleware('permission:list-role|add-role|edit-role|delete-role', ['only' => ['index','store']]);
+    //      $this->middleware('permission:add-role', ['only' => ['create','store']]);
+    //      $this->middleware('permission:edit-role', ['only' => ['edit','update']]);
+    //      $this->middleware('permission:delete-role', ['only' => ['destroy']]);
+    // }
 
     public function index(Request $request): View
     {
@@ -39,7 +39,7 @@ class RoleController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $this->validate($request, [
+        $validated = $request->validate([
 			'name' => 'required|unique:roles,name',
 			'guard_name' => 'required',
             'permission' => 'required',
@@ -81,7 +81,7 @@ class RoleController extends Controller
 
     public function update(Request $request, $id): RedirectResponse
     {
-        $this->validate($request, [
+        $validated = $request->validate([
             'name' => 'required',
 			'guard_name' => 'required',
         ]);

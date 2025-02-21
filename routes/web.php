@@ -8,13 +8,13 @@ use App\Http\Controllers\backend\{
 };
 use App\Http\Controllers\frontend\{
     VendorAuthenticator,
+    VendorProfilingController,
 };
 use App\Http\Middleware\IsVendorAuthenticated;
+
 Route::get('/', function(){
     return view('frontend.pages.index');
-    // Auth::logout();
 })->name('homepage');
-
 Route::prefix('vendor')->as('web.vendor.')->group(function () {
     Route::prefix('authentication')->controller(VendorAuthenticator::class)->as('authentication.')->group(function () {
         Route::group(['middleware' => ['IsVendorAuthenticated:reverse']], function() {
@@ -32,9 +32,10 @@ Route::prefix('vendor')->as('web.vendor.')->group(function () {
             Route::get('logout', 'logout')->name('logout');
         });
     });
-    Route::prefix('profile')->controller(VendorAuthenticator::class)->as('profile.')->group(function () {
+    Route::prefix('profile')->controller(VendorProfilingController::class)->as('profile.')->group(function () {
         Route::group(['middleware' => ['IsVendorAuthenticated']], function() {
-            // Route::get('profile', 'profile')->name('profile');
+            Route::get('/', 'index')->name('index');
+            Route::get('/business-profiling', 'businessProfiling')->name('businessProfiling');
         });
     });
 });

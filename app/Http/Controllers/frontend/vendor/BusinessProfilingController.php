@@ -27,7 +27,7 @@ class BusinessProfilingController extends Controller
         return view("frontend.vendor.business-profiling.index",compact("ExistingData","DropDownData"));
     }
 
-    public function storeOrUpdateBusinessProfile(){
-        dd(1);
+    public function storeOrUpdateBusinessProfile(Request $request){
+        dd($request->all());
     }
 }

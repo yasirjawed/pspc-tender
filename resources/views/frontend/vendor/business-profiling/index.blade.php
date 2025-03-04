@@ -17,11 +17,22 @@
     </div>
     <div class="app-content">
         <div class="container">
-            <form method="POST" action="{{ route('web.vendor.business-profiling.storeOrUpdateBusinessProfile') }}">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('web.vendor.business-profiling.storeOrUpdateBusinessProfile') }}"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6 my-2">
-                        <label>Business Entity Type:</label>
+                        <label>Business Entity Type: <span class="text-danger">*</span></label>
                         <select class="form-control multi-select-boxes-v1" name="categories"
                             data-component="registration-bodies" id="entity_type" multiple>
                             @foreach ($DropDownData['business_categories'] as $business_category)
@@ -30,7 +41,7 @@
                         </select>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-6 my-2">
-                        <label>Business Industry:</label>
+                        <label>Business Industry: <span class="text-danger">*</span></label>
                         <select class="form-control multi-select-boxes-v1" multiple name="industries">
                             @foreach ($DropDownData['business_industries'] as $business_industry)
                                 <option value="{{ $business_industry->id }}">{{ $business_industry->name }}</option>
@@ -38,7 +49,7 @@
                         </select>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-12 my-2">
-                        <label>Description / Details:</label>
+                        <label>Description / Details: <span class="text-danger">*</span></label>
                         <textarea class="form-control" name="description"></textarea>
                     </div>
                     <div class="bg-dark-subtle w-100 my-4">
@@ -46,16 +57,16 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 col-md-6 col-lg-6 my-2">
-                            <label>Business Name:</label>
+                            <label>Business Name: <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" placeholder="Business Name" name="name">
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6 my-2">
-                            <label>Business Short Name:</label>
+                            <label>Business Short Name: <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" placeholder="Automatically generated"
                                 name="short_name">
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6 my-2">
-                            <label>Origin Country:</label>
+                            <label>Origin Country: <span class="text-danger">*</span></label>
                             <select class="form-control select-boxes-v1" style="width:100% !important"
                                 id="profiling-country" name="origin_country">
                                 <option value="" selected disabled>Select Country</option>
@@ -65,7 +76,7 @@
                             </select>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6 my-2">
-                            <label>City:</label>
+                            <label>City: <span class="text-danger">*</span></label>
                             <select class="form-control select-boxes-v1" style="width:100% !important" name="city"
                                 id="profiling-city">
                                 <option value="">Select City</option>
@@ -75,16 +86,16 @@
                             </select>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6 my-2">
-                            <label>Date Of Incorporation:</label>
+                            <label>Date Of Incorporation: <span class="text-danger">*</span></label>
                             <input type="date" class="form-control datepicker" name="date_of_incorporation"
                                 placeholder="Date Of Incorporation">
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6 my-2">
-                            <label>Website URL:</label>
+                            <label>Website URL: <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="website_url" placeholder="https://website.com">
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6 my-2">
-                            <label>Business Logo:</label>
+                            <label>Business Logo: <span class="text-danger">*</span></label>
                             <input type="file" class="form-control" name="logo">
                         </div>
                         <div class="col-sm-12 col-md-12 col-lg-12 my-2 text-right">

@@ -25,6 +25,7 @@ class BusinessProfileRequest extends FormRequest
         $isUpdate = $this->isMethod('put') || $this->isMethod('patch');
 
         return [
+            'id' => 'nullable|exists:business_profiles,id',
             'categories' => 'required|exists:business_categories,id',
             'industries' => 'required|exists:business_industries,id',
             'description' => 'required|string|max:1000',
@@ -34,7 +35,7 @@ class BusinessProfileRequest extends FormRequest
             'city' => 'required|exists:cities,id',
             'date_of_incorporation' => 'required|date|before_or_equal:today',
             'website_url' => 'nullable|url|max:255',
-            'logo' => $isUpdate ? 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048' : 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'logo' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ];
     }
 }

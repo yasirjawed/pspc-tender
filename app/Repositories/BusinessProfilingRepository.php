@@ -21,7 +21,7 @@ class BusinessProfilingRepository
 
     public function getExistingData()
     {
-        return BusinessProfile::where('vendor_id',$this->vendor->id)->first();
+        return BusinessProfile::where('vendor_id', $this->vendor->id)->with(['country', 'country.cities'])->first();
     }
 
     public function getDropdownData()
@@ -46,5 +46,10 @@ class BusinessProfilingRepository
     public function clearDropdownCache()
     {
         Cache::forget('dropdown_data');
+    }
+
+    public function storeOrUpdate(array $data){
+        $data['vendor_id'] = Auth::guard('vendor')->user()->id;
+        return BusinessProfile::updateOrCreate(['id' => $data['id'] ?? null], $data);
     }
 }

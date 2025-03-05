@@ -35,7 +35,7 @@ class BusinessProfilingController extends Controller
     public function __construct(BusinessProfilingService $businessProfilingService)
     {
         $this->businessProfilingService = $businessProfilingService;
-        $this->fileStoragePath = 'uploads/business-profile/media/';
+        $this->fileStoragePath = 'uploads/business-profile/media';
     }
 
     public function businessProfiling(){
@@ -45,9 +45,13 @@ class BusinessProfilingController extends Controller
     }
 
     public function storeOrUpdateBusinessProfile(BusinessProfileRequest $request){
-        $validated = $request->validated();
-        dd($request->all());
-        // $path = FileUploadService::upload($request->file('logo'),$this->fileStoragePath);
-        // return response()->json(['path' => $path]);
+        try {
+            $validated = $request->validated();
+            $data = $this->businessProfilingService->storeOrUpdate($validated,$this->fileStoragePath);
+            return redirect()->back()->with('success','Business profile has been updated!');
+        } catch (\Exception $e) {
+            \Log::error("Business Profile Form Submission Error: " . $e->getMessage());
+            return redirect()->back()->with('error','Something went wrong!');
+        }
     }
 }

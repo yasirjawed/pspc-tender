@@ -35,6 +35,28 @@
         right: 1rem;
     }
 
+    .blinking-tic {
+        width: 20px;
+        height: 20px;
+        background-color: rgb(36, 146, 2);
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        right: 1rem;
+    }
+
+    .blinking-tic::after {
+        content: "";
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        width: 6px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
     @keyframes blink {
         0% {
             opacity: 1;

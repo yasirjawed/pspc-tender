@@ -26,12 +26,12 @@
                     </ul>
                 </div>
             @endif
-            @dump($ExistingData)
+            {{-- @dump($ExistingData) --}}
             <form method="POST" action="{{ route('web.vendor.business-profiling.storeOrUpdateBusinessProfile') }}"
                 enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <input type="hidden" name="id" value="{{ $ExistingData->id ?? '' }}">
+                    <input type="hidden" name="id" id="business_profile_id" value="{{ $ExistingData->id ?? '' }}">
                     <div class="col-sm-12 col-md-6 col-lg-6 my-2">
                         <label>Business Entity Type: <span class="text-danger">*</span></label>
                         <select class="form-control multi-select-boxes-v1" name="categories"
@@ -113,8 +113,15 @@
                                 value="{{ $ExistingData->website_url ?? '' }}">
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6 my-2">
-                            <label>Business Logo: <span class="text-danger">*</span></label>
+                            <label>Business Logo: </label>
                             <input type="file" class="form-control" name="logo">
+                            @if ($ExistingData && $ExistingData->logo)
+                                <div id="logo-preview" class="d-flex align-items-center mt-3">
+                                    <img src="{{ asset($ExistingData->logo) }}" alt="Vendor Logo"
+                                        class="border rounded me-3" style="width: 120px; height: auto;">
+                                    <button type="button" class="btn btn-danger" id="remove-logo-btn">Remove</button>
+                                </div>
+                            @endif
                         </div>
                         <div class="col-sm-12 col-md-12 col-lg-12 my-2 text-right">
                             <button type="submit" class="btn btn-dark">Submit</button>
@@ -166,6 +173,37 @@
                         });
                     }
                 });
+            });
+        </script>
+        <script>
+            document.getElementById('remove-logo-btn')?.addEventListener('click', function() {
+                var business_profile_id = $("#business_profile_id").val();
+                if (business_profile_id) {
+                    if (!confirm("Are you sure you want to delete this logo?")) return;
+
+                    fetch("{{ route('web.vendor.business-profiling.media-delete') }}", {
+                            method: "POST",
+                            headers: {
+                                "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                id: business_profile_id
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                document.getElementById('logo-preview').remove();
+                            } else {
+                                alert("Error deleting the logo.");
+                            }
+                            console.log(data);
+                        })
+                        .catch(error => console.error("Error:", error));
+                } else {
+                    alert("Error deleting the logo.");
+                }
             });
         </script>
     @endpush

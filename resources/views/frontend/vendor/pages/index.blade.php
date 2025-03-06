@@ -16,86 +16,144 @@
         </div>
     </div>
     <div class="app-content">
-        <div class="container-fluid">
-            <div class="row">
-                {{-- <div class="col-lg-3 col-6">
-                    <div class="small-box text-bg-primary">
-                        <div class="inner">
-                            <h3>{{ user_count_admin() }}</h3>
-                            <p>Admin Users</p>
-                        </div>
-                        <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path
-                                d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z">
-                            </path>
-                        </svg>
-                        <a href="{{ route('users.index') }}"
-                            class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">All
-                            List <i class="bi bi-link-45deg"></i></a>
-                    </div>
+        <div class="container-fluid text-center mt-5">
+            @dump(session('profile_incomplete'))
+            <h4 class="mb-4">Vendor Profile Completion Steps</h4>
+            <div class="step-container">
+                <!-- Addresses -->
+                <div class="step {{ session('profile_incomplete.business-profile') ? 'incomplete' : 'completed' }}">
+                    <span class="circle">{!! session('profile_incomplete.business-profile') ? '<i class="fa fa-x"></i>' : '<i class="fa fa-check"></i>' !!}</span>
+                    <div class="step-title">Business Profile</div>
                 </div>
-                <div class="col-lg-3 col-6">
-                    <div class="small-box text-bg-success">
-                        <div class="inner">
-                            <h3>{{ roles_count_admin() }}</h3>
-                            <p>Available Roles</p>
-                        </div>
-                        <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path
-                                d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z">
-                            </path>
-                        </svg>
-                        <a href="{{ route('roles.index') }}"
-                            class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">All
-                            List <i class="bi bi-link-45deg"></i></a>
-                    </div>
+
+                <div class="step {{ session('profile_incomplete.registeration-bodies') ? 'incomplete' : 'completed' }}">
+                    <span class="circle">{!! session('profile_incomplete.registeration-bodies')
+                        ? '<i class="fa fa-x"></i>'
+                        : '<i class="fa fa-check"></i>' !!}</span>
+                    <div class="step-title">Registeration Bodies</div>
                 </div>
-                <div class="col-lg-3 col-6">
-                    <div class="small-box text-bg-warning">
-                        <div class="inner">
-                            <h3>44</h3>
-                            <p>User Registrations</p>
-                        </div>
-                        <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path
-                                d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z">
-                            </path>
-                        </svg>
-                        <a href="#"
-                            class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover">More
-                            info <i class="bi bi-link-45deg"></i></a>
-                    </div>
+
+                <div class="step {{ session('profile_incomplete.supporting-documents') ? 'incomplete' : 'completed' }}">
+                    <span class="circle">{!! session('profile_incomplete.supporting-documents')
+                        ? '<i class="fa fa-x"></i>'
+                        : '<i class="fa fa-check"></i>' !!}</span>
+                    <div class="step-title">Supporting Documents</div>
                 </div>
-                <div class="col-lg-3 col-6">
-                    <div class="small-box text-bg-danger">
-                        <div class="inner">
-                            <h3>65</h3>
-                            <p>Unique Visitors</p>
-                        </div>
-                        <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path clip-rule="evenodd" fill-rule="evenodd"
-                                d="M2.25 13.5a8.25 8.25 0 018.25-8.25.75.75 0 01.75.75v6.75H18a.75.75 0 01.75.75 8.25 8.25 0 01-16.5 0z">
-                            </path>
-                            <path clip-rule="evenodd" fill-rule="evenodd"
-                                d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z">
-                            </path>
-                        </svg>
-                        <a href="#"
-                            class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">More
-                            info <i class="bi bi-link-45deg"></i></a>
-                    </div>
-                </div> --}}
+
+                <div class="step {{ session('profile_incomplete.vendor-addresses') ? 'incomplete' : 'completed' }}">
+                    <span class="circle">{!! session('profile_incomplete.vendor-addresses') ? '<i class="fa fa-x"></i>' : '<i class="fa fa-check"></i>' !!}</span>
+                    <div class="step-title">Addresses</div>
+                </div>
+                {{-- @dump(session('profile_incomplete.ppra-registrations')) --}}
+                <div class="step {{ session('profile_incomplete.ppra-registrations') ? 'incomplete' : 'completed' }}">
+                    <span class="circle">{!! session('profile_incomplete.ppra-registrations') ? '<i class="fa fa-x"></i>' : '<i class="fa fa-check"></i>' !!}</span>
+                    <div class="step-title">PPRA Registeration</div>
+                </div>
             </div>
         </div>
     </div>
+    @push('specific_css')
+        <style>
+            body {
+                background-color: #f8f9fa;
+            }
+
+            .step-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                max-width: 100%;
+                margin: auto;
+                position: relative;
+                padding: 40px 0;
+            }
+
+            .step {
+                text-align: center;
+                flex: 1;
+                position: relative;
+            }
+
+            .step .circle {
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                border-radius: 50%;
+                display: inline-block;
+                font-size: 24px;
+                font-weight: bold;
+                position: relative;
+                z-index: 2;
+            }
+
+            .completed .circle {
+                background-color: #28a745;
+                color: white;
+            }
+
+            .incomplete .circle {
+                background-color: #dc3545;
+                color: white;
+            }
+
+            .blinking {
+                width: 12px;
+                height: 12px;
+                background-color: red;
+                border-radius: 50%;
+                display: inline-block;
+                position: absolute;
+                top: -5px;
+                right: -5px;
+                animation: blink 1s infinite alternate;
+            }
+
+            @keyframes blink {
+                0% {
+                    opacity: 1;
+                }
+
+                100% {
+                    opacity: 0.2;
+                }
+            }
+
+            .step::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 6px;
+                background-color: #ccc;
+                top: 50%;
+                left: 50%;
+                transform: translateY(-50%);
+                z-index: 1;
+            }
+
+            /* .step:first-child::before { */
+            /*width: 50%;*/
+            /*left: 50%;*/
+            /*}*/
+
+            .step:last-child::before {
+                width: 50%;
+                left: 0;
+            }
+
+            .step-title {
+                margin-top: 10px;
+                font-size: 14px;
+                font-weight: bold;
+                white-space: nowrap;
+            }
+        </style>
+    @endpush
     @push('specific_js')
         <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js"
             integrity="sha256-/t1nN2956BT869E6H4V1dnt0X5pAQHPytli+1nTZm2Y=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"
             integrity="sha256-XPpPaZlU8S/HWf7FZLAncLg2SAkP8ScUTII89x9D3lY=" crossorigin="anonymous"></script> <!-- jsvectormap -->
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     @endpush
 @endsection

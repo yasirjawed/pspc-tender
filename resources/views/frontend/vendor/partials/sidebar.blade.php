@@ -31,8 +31,13 @@
                 <li class="nav-item">
                     <a href="{{ route('web.vendor.business-profiling.index') }}" class="nav-link"> <i
                             class="nav-icon fa-solid fa-user"></i>
-                        <p>Business Profile<i class="blinking-circle"></i>
+                        <p>Business Profile
+                            {!! session('profile_incomplete.business-profile')
+                                ? '<i class="blinking-circle"></i>'
+                                : '<i class="blinking-tic"></i>' !!}
+
                         </p>
+
 
                     </a>
                 </li>

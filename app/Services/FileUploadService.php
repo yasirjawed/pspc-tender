@@ -11,4 +11,12 @@ class FileUploadService
     {
         return $file->store($folder, 'public');
     }
+
+    public static function delete($filePath)
+    {
+        if ($filePath && Storage::disk('public')->exists($filePath)) {
+            return Storage::disk('public')->delete($filePath);
+        }
+        return false;
+    }
 }

@@ -52,4 +52,10 @@ class BusinessProfilingRepository
         $data['vendor_id'] = Auth::guard('vendor')->user()->id;
         return BusinessProfile::updateOrCreate(['id' => $data['id'] ?? null], $data);
     }
+
+    public function MediaDelete(BusinessProfile $businessProfile){
+        $businessProfile->logo = '';
+        $businessProfile->save();
+        return $businessProfile;
+    }
 }

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\businessProfile;
+
 class Vendor extends Authenticatable
 {
     protected $fillable = [
@@ -17,4 +19,8 @@ class Vendor extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function businessProfile(){
+        return $this->hasOne(businessProfile::class, 'vendor_id');
+    }
 }

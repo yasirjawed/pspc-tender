@@ -40,6 +40,7 @@ Route::prefix('vendor')->as('web.vendor.')->group(function () {
         Route::prefix('business-profiling')->controller(BusinessProfilingController::class)->as('business-profiling.')->group(function () {
             Route::get('/', 'businessProfiling')->name('index');
             Route::post('/', 'storeOrUpdateBusinessProfile')->name('storeOrUpdateBusinessProfile');
+            Route::post('/media-delete', 'mediaDelete')->name('media-delete');
         });
     });
 });

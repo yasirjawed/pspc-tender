@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Repositories\BusinessProfilingRepository;
 use App\Services\FileUploadService;
+use App\Models\BusinessProfile;
+use Illuminate\Support\Facades\Storage;
 
 class BusinessProfilingService
 {
@@ -30,5 +32,12 @@ class BusinessProfilingService
             $data['logo'] = $path;
         }
         return $this->businessProfilingRepository->storeOrUpdate($data);
+    }
+
+    public function MediaDelete(BusinessProfile $businessProfile, string $path){
+        if ($path && Storage::disk('public')->exists($path)) {
+            FileUploadService::delete($path);
+        }
+        return $this->businessProfilingRepository->MediaDelete($businessProfile);
     }
 }

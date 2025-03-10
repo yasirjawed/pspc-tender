@@ -35,9 +35,14 @@ class BusinessProfilingService
     }
 
     public function MediaDelete(BusinessProfile $businessProfile, string $path){
-        if ($path && Storage::disk('public')->exists($path)) {
-            FileUploadService::delete($path);
-        }
+        $this->DeleteFromPath($path);
         return $this->businessProfilingRepository->MediaDelete($businessProfile);
+    }
+
+    public function DeleteFromPath($path): bool {
+        if ($path && Storage::disk('public')->exists($path)) {
+            return FileUploadService::delete($path);
+        }
+        return false;
     }
 }

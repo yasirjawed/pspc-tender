@@ -13,8 +13,8 @@ class ProfileCompletionService
         if (!$user->businessProfile) {
             $incompleteSections["business-profile"] = true;
         }
-        if (!$user->registerationBodies) {
-            $incompleteSections["registeration-bodies"] = true;
+        if (!$user->registrationBodies->count()) {
+            $incompleteSections["registration-bodies"] = true;
         }
         if (!$user->supportingDocuments) {
             $incompleteSections["supporting-documents"] = true;

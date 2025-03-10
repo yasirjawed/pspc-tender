@@ -35,10 +35,17 @@
                             {!! session('profile_incomplete.business-profile')
                                 ? '<i class="blinking-circle"></i>'
                                 : '<i class="blinking-tic"></i>' !!}
-
                         </p>
-
-
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('web.vendor.registration-bodies.index') }}" class="nav-link"> <i
+                            class="nav-icon fa-solid fa-user"></i>
+                        <p>Registration Bodies
+                            {!! session('profile_incomplete.registration-bodies')
+                                ? '<i class="blinking-circle"></i>'
+                                : '<i class="blinking-tic"></i>' !!}
+                        </p>
                     </a>
                 </li>
                 <li class="nav-item">

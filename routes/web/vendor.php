@@ -5,6 +5,8 @@ use App\Http\Controllers\frontend\vendor\{
     VendorAuthenticator,
     BusinessProfilingController,
     RegistrationBodiesController,
+    VendorAddressController,  
+    SupportingDocumentController,
     DashboardController as VDashboardController,
 };
 use App\Http\Middleware\IsVendorAuthenticated;
@@ -72,5 +74,11 @@ Route::prefix('vendor')->as('web.vendor.')->group(function () {
 
         // Registration Bodies Management
         Route::resource('registration-bodies', RegistrationBodiesController::class);
+
+        // Vendor Addresses Management
+        Route::resource('vendor-addresses', VendorAddressController::class);
+
+        // Supporting Documents Management
+        Route::resource('supporting-documents', SupportingDocumentController::class);
     });
 }); 

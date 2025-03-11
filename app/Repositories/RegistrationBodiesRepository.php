@@ -73,9 +73,9 @@ class RegistrationBodiesRepository implements RegistrationBodiesInterface
      * Create a new registration body
      *
      * @param array $data The data to create the registration body
-     * @return void
+     * @return RegistrationBody
      */
-    public function createRegistrationBody(array $data)
+    public function createRegistrationBody(array $data): RegistrationBody
     {
         $data['vendor_id'] = Auth::guard('vendor')->user()->id;
         return $this->model->create($data);
@@ -85,9 +85,10 @@ class RegistrationBodiesRepository implements RegistrationBodiesInterface
      * Update a registration body
      *
      * @param array $data The data to update the registration body
-     * @return Collection Returns a collection of RegistrationBody models
+     * @param int $id The id of the registration body
+     * @return RegistrationBody Returns a collection of RegistrationBody models
      */
-    public function updateRegistrationBody(array $data, $id)
+    public function updateRegistrationBody(array $data, $id): ?RegistrationBody
     {
         $registrationBody = $this->model->find($id);
         if(!$registrationBody) {

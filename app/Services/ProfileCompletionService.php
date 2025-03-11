@@ -9,7 +9,6 @@ class ProfileCompletionService
     public function checkIncompleteSections(Vendor $user): array
     {
         $incompleteSections = [];
-
         if (!$user->businessProfile) {
             $incompleteSections["business-profile"] = true;
         }
@@ -19,7 +18,7 @@ class ProfileCompletionService
         if (!$user->supportingDocuments) {
             $incompleteSections["supporting-documents"] = true;
         }
-        if (!$user->vendorAddresses) {
+        if (!$user->vendorAddresses->count()) {
             $incompleteSections["vendor-addresses"] = true;
         }
         if (!$user->ppraRegisterations) {

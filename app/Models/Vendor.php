@@ -27,4 +27,8 @@ class Vendor extends Authenticatable
     public function registrationBodies(){
         return $this->hasMany(RegistrationBody::class, 'vendor_id');
     }
+
+    public function vendorAddresses(){
+        return $this->hasMany(VendorAddress::class, 'vendor_id');
+    }
 }

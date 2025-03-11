@@ -42,7 +42,7 @@
 
                 <div class="step {{ session('profile_incomplete.vendor-addresses') ? 'incomplete' : 'completed' }}">
                     <span class="circle">{!! session('profile_incomplete.vendor-addresses') ? '<i class="fa fa-x"></i>' : '<i class="fa fa-check"></i>' !!}</span>
-                    <div class="step-title">Addresses</div>
+                    <div class="step-title">Address(es)</div>
                 </div>
                 {{-- @dump(session('profile_incomplete.ppra-registrations')) --}}
                 <div class="step {{ session('profile_incomplete.ppra-registrations') ? 'incomplete' : 'completed' }}">

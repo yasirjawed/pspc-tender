@@ -5,6 +5,7 @@ namespace App\Listeners;
 use Illuminate\Auth\Events\Login;
 use App\Events\BusinessProfileUpdated;
 use App\Events\RegistrationBodyUpdated;
+use App\Events\VendorAddressUpdated;
 use App\Services\ProfileCompletionService;
 use Illuminate\Support\Facades\Session;
 
@@ -18,7 +19,7 @@ class CheckProfileCompletion
         $this->profileService = $profileService;
     }
 
-    public function handle(Login|BusinessProfileUpdated|RegistrationBodyUpdated $event): void
+    public function handle(Login|BusinessProfileUpdated|RegistrationBodyUpdated|VendorAddressUpdated $event): void
     {
         if (isset($event->guard) && $event->guard !== 'vendor') {
             return;

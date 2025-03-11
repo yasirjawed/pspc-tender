@@ -33,7 +33,7 @@
         display: inline-block;
         animation: blink 1s infinite alternate;
         position: absolute;
-        right: 1rem;
+        right: 1px;
     }
 
     .blinking-tic {
@@ -43,7 +43,7 @@
         border-radius: 50%;
         display: inline-block;
         position: absolute;
-        right: 1rem;
+        right: 1px;
     }
 
     .blinking-tic::after {
@@ -66,5 +66,9 @@
         100% {
             opacity: 0.3;
         }
+    }
+
+    ul.nav.sidebar-menu.flex-column {
+        margin: 0 0 0 -18px;
     }
 </style>

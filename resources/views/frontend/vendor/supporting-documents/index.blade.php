@@ -31,7 +31,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            @foreach ($supportingDocuments as $supportingDocument)
+                                <tr>
+                                    <td>{{ $supportingDocument->id }}</td>
+                                    <td>{{ $supportingDocument->documentType->name }}</td>
+                                    <td>
+                                        <div class="d-flex gap-2">
+                                            <a href="{{ asset($supportingDocument->path) }}" target="_blank">
+                                                <button class="btn btn-dark">View</button>
+                                            </a>
+                                            <form
+                                                action="{{ route('web.vendor.supporting-documents.destroy', $supportingDocument->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-danger deleteSupportingDocument">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -44,8 +64,8 @@
         <script>
             $(document).ready(function() {
                 $('#dataTable').DataTable();
-                $('.deleteRegistrationBody').click(function() {
-                    if (confirm('Are you sure you want to delete this registration body?')) {
+                $('.deleteSupportingDocument').click(function() {
+                    if (confirm('Are you sure you want to delete this supporting document?')) {
                         return true;
                     }
                 });

@@ -31,4 +31,8 @@ class Vendor extends Authenticatable
     public function vendorAddresses(){
         return $this->hasMany(VendorAddress::class, 'vendor_id');
     }
+
+    public function supportingDocuments(){
+        return $this->hasMany(SupportingDocument::class, 'vendor_id');
+    }
 }

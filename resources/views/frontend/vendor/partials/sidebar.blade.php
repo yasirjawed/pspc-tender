@@ -16,6 +16,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ url('/') }}" class="nav-link"><i class="nav-icon fa-solid fa-globe"></i>
+                        <p class="text-sidebar-resizer">Main Website</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('web.vendor.business-profiling.index') }}" class="nav-link"> <i
                             class="nav-icon fa-solid fa-business-time"></i>
                         <p class="text-sidebar-resizer">Business Profile

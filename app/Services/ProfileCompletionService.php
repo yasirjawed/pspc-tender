@@ -15,7 +15,7 @@ class ProfileCompletionService
         if (!$user->registrationBodies->count()) {
             $incompleteSections["registration-bodies"] = true;
         }
-        if (!$user->supportingDocuments) {
+        if (!$user->supportingDocuments->count()) {
             $incompleteSections["supporting-documents"] = true;
         }
         if (!$user->vendorAddresses->count()) {

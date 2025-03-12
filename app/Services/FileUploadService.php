@@ -17,6 +17,7 @@ class FileUploadService
         if ($filePath && Storage::disk('public')->exists($filePath)) {
             return Storage::disk('public')->delete($filePath);
         }
+        \Log::error("File Upload Service Delete: ",[$filePath]);
         return false;
     }
 }

@@ -8,7 +8,7 @@ use App\Events\RegistrationBodyUpdated;
 use App\Events\VendorAddressUpdated;
 use App\Services\ProfileCompletionService;
 use Illuminate\Support\Facades\Session;
-
+use App\Events\SupportingDocumentUpdated;
 
 class CheckProfileCompletion
 {
@@ -19,7 +19,7 @@ class CheckProfileCompletion
         $this->profileService = $profileService;
     }
 
-    public function handle(Login|BusinessProfileUpdated|RegistrationBodyUpdated|VendorAddressUpdated $event): void
+    public function handle(Login|BusinessProfileUpdated|RegistrationBodyUpdated|VendorAddressUpdated|SupportingDocumentUpdated $event): void
     {
         if (isset($event->guard) && $event->guard !== 'vendor') {
             return;
